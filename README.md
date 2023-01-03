@@ -1,4 +1,4 @@
-#React Redux Login and Logout example with Hooks and Redux
+# React Redux Login and Logout example with Hooks and Redux
 
 user: test@gmail.com
 password: test
