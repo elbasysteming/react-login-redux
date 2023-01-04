@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { login } from "../../features/auth/authSlice";
-/* Material UI */
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import Alert from "@mui/material/Alert";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -16,6 +16,8 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { loginSchema } from "../../validations/login";
+import { login } from "../../features/auth/authSlice";
 
 const theme = createTheme();
 
@@ -24,15 +26,22 @@ export const Login = () => {
     const authError = useSelector(state => state.auth.error);
     const authUser = useSelector(state => state.auth.user);
 
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
+        resolver: yupResolver(loginSchema),
+    });
+
     useEffect(() => {
         if (authUser) history.navigate("/");
     }, []);
 
-    const handleSubmit = event => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        const username = data.get("username");
-        const password = data.get("password");
+    const onSubmit = (data, e) => {
+        e.preventDefault();
+        const username = data.username;
+        const password = data.password;
         return dispatch(login({ username, password }));
     };
 
@@ -55,12 +64,11 @@ export const Login = () => {
                     </Typography>
                     <Box
                         component="form"
-                        onSubmit={event => {
-                            handleSubmit(event);
-                        }}
+                        onSubmit={handleSubmit(onSubmit)}
                         noValidate
                         sx={{ mt: 1 }}>
                         <TextField
+                            {...register("username")}
                             margin="normal"
                             required
                             fullWidth
@@ -69,8 +77,13 @@ export const Login = () => {
                             name="username"
                             autoComplete="username"
                             autoFocus
+                            error={errors.username ? true : false}
                         />
+                        <Typography variant="inherit" color="textSecondary">
+                            {errors.username?.message}
+                        </Typography>
                         <TextField
+                            {...register("password")}
                             margin="normal"
                             required
                             fullWidth
@@ -79,11 +92,13 @@ export const Login = () => {
                             type="password"
                             id="password"
                             autoComplete="current-password"
+                            error={errors.password ? true : false}
                         />
+                        <Typography variant="inherit" color="textSecondary">
+                            {errors.password?.message}
+                        </Typography>
                         {authError && (
-                            <Alert severity="error">
-                                {authError.message}
-                            </Alert>
+                            <Alert severity="error">{authError.message}</Alert>
                         )}
                         <FormControlLabel
                             control={
