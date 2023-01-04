@@ -12,6 +12,8 @@ In this tutorial, we’re gonna build a React Redux Login and Logout example wit
 - Fake Backend Api
 - Material UI
 - React.js Hooks
+- React Hook Form
+- Yup Validation
 
 <a href='https://cafecito.app/elbasysteming' rel='noopener' target='_blank'><img srcset='https://cdn.cafecito.app/imgs/buttons/button_1.png 1x, https://cdn.cafecito.app/imgs/buttons/button_1_2x.png 2x, https://cdn.cafecito.app/imgs/buttons/button_1_3.75x.png 3.75x' src='https://cdn.cafecito.app/imgs/buttons/button_1.png' alt='Invitame un café en cafecito.app' /></a>
 
