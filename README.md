@@ -1,3 +1,22 @@
+# React Redux Login and Logout example with Hooks and Redux
+
+user: test@gmail.com
+password: test
+
+
+In this tutorial, we’re gonna build a React Redux Login and Logout example with:
+
+- LocalStorage
+- Redux Toolkit
+- React Router
+- Fake Backend Api
+- Material UI
+- React.js Hooks
+
+<a href='https://cafecito.app/elbasysteming' rel='noopener' target='_blank'><img srcset='https://cdn.cafecito.app/imgs/buttons/button_1.png 1x, https://cdn.cafecito.app/imgs/buttons/button_1_2x.png 2x, https://cdn.cafecito.app/imgs/buttons/button_1_3.75x.png 3.75x' src='https://cdn.cafecito.app/imgs/buttons/button_1.png' alt='Invitame un café en cafecito.app' /></a>
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
